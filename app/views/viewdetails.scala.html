@@ -1,0 +1,48 @@
+@import play.api.libs.json.{JsValue, Json}
+@import dao.ImageDetails
+@(jsonData: JsValue, imgName: String, resList: List[ImageDetails])
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result Page</title>
+    <style>
+    table, th, td {
+      border: 1px solid black;
+      padding: 5px;
+    }
+    table {
+      border-spacing: 1px;
+    }
+    </style>
+</head>
+<body>
+    <center>
+        <div>
+            <img src="@routes.Assets.at(imgName)"/>
+        </div>
+        <br>
+
+        <div>
+            <table>
+                <tr>
+                    <th>Mid</th>
+                    <th>Description</th>
+                    <th>Score</th>
+                    <th>Topicality</th>
+                </tr>
+
+                @resList.map { rsl =>
+                    <tr>
+                        <td>@rsl.Mid</td>
+                        <td>@rsl.Description</td>
+                        <td>@rsl.Score</td>
+                        <td>@rsl.Topicality</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </center>
+
+</body>
+</html>
